@@ -58,8 +58,8 @@
 #   * Move your OpenAudible dir wherever you want.
 #   * Delete directories.json
 #
-# If you have no ~/OpenAudible dir yet, create a directory named OpenAudible
-# wherever you want.
+# If you have no ~/OpenAudible dir yet:
+#   * Create a directory named OpenAudible wherever you want.
 #
 # Copy this script (launcher.sh) to the new OpenAudible dir, IE:
 # /path/to/OpenAudible/launcher.sh
