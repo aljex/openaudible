@@ -9,5 +9,6 @@ public class AudibleAccountPrefs {
 	public AudibleRegion getRegion() {
 		return audibleRegion;
 	}
+	public int quality = 6;
 }
 

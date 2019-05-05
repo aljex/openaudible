@@ -25,6 +25,7 @@ public class Preferences extends Dialog {
 	final Directories dirs[] = {Directories.BASE, Directories.WEB};
 	final String paths[] = new String[Directories.values().length];
 	final Text dirText[] = new Text[dirs.length];
+	private Spinner quality;
 	Combo region;
 	Button autoConvert, autoDownload, autoWebPage;
 	
@@ -68,6 +69,7 @@ public class Preferences extends Dialog {
 		email.setText(Audible.instance.getAccount().audibleUser);
 		password.setText(Audible.instance.getAccount().audiblePassword);
 		region.select(Audible.instance.getAccount().audibleRegion.ordinal());
+		quality.setSelection(Audible.instance.getAccount().quality);
 		
 		for (Text t : dirText) {
 			Directories d = (Directories) t.getData();
@@ -85,6 +87,7 @@ public class Preferences extends Dialog {
 		
 		String u = email.getText();
 		String p = password.getText();
+		int q = quality.getSelection();
 		AudibleAccountPrefs prefs = Audible.instance.getAccount();
 		boolean changed = false;
 		
@@ -93,10 +96,12 @@ public class Preferences extends Dialog {
 		if (!prefs.audiblePassword.equals(p)) changed = true;
 		if (!prefs.audibleUser.equals(u)) changed = true;
 		if (!prefs.audibleRegion.equals(r)) changed = true;
+		if (prefs.quality != q) changed = true;
 		if (changed) {
 			prefs.audibleUser = u;
 			prefs.audiblePassword = p;
 			prefs.audibleRegion = r;
+			prefs.quality = q;
 		}
 		
 		AudibleGUI.instance.prefs.autoConvert = autoConvert.getSelection();
@@ -182,6 +187,19 @@ public class Preferences extends Dialog {
 		autoWebPage.setLayoutData(gd);
 	}
 	
+	private void createConversionSettings(GridComposite c) {
+		Group group = c.newGroup("Conversion settings", 1);
+		
+		GridComposite.newLabel(group, "Quality (0 is max quality, 9 is worst)");
+		
+		GridData gd = new GridData(SWT.BEGINNING, SWT.CENTER, false, true);
+		
+		quality = new Spinner(group, 1);
+		quality.setMinimum(0);
+		quality.setMaximum(9);
+		quality.setLayoutData(gd);
+	}
+	
 	/**
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
@@ -192,6 +210,7 @@ public class Preferences extends Dialog {
 		createAccountGroup(c);
 		createDirectoryGroup(c);
 		createAutomationGroup(c);
+		createConversionSettings(c);
 		createPrefsLocation(c);
 		
 		this.getShell().setText("Preferences");

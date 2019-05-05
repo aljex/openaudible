@@ -31,7 +31,7 @@ public class ConvertJob implements IQueueJob, LineListener {
 	private Process proc = null;
 	private IProgressTask progress;
 	final String duration;
-	final static int mp3Qscale = 6;       // audio quality value 0 to 9. See https://trac.ffmpeg.org/wiki/Encode/MP3
+	private int mp3Qscale = 6;  // audio quality value 0 to 9. See https://trac.ffmpeg.org/wiki/Encode/MP3
 	
 	final DebugBuffer stdErr = new DebugBuffer();
 	
@@ -39,6 +39,7 @@ public class ConvertJob implements IQueueJob, LineListener {
 		book = b;
 		aax = Audible.instance.getAAXFileDest(b);
 		mp3 = Audible.instance.getMP3FileDest(b);
+		mp3Qscale = Audible.instance.getAccount().quality;
 		image = Audible.instance.getImageFileDest(b);
 		temp = new File(Directories.getTmpDir(), book.id() + "_temp.mp3");
 		duration = book.getDuration();
