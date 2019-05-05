@@ -8,14 +8,14 @@
     <artifactId>openaudible</artifactId>
     <packaging>jar</packaging>
     <name>openaudible</name>
-    <version>1.1</version>  <!-- appVersion from org.openaudible.desktop.swt.manager.Version.java -->
+    <version>1.4.9-bkw</version>  <!-- appVersion from org.openaudible.desktop.swt.manager.Version.java -->
     <description>open source audible library and cross-platform manager application</description>
     <url>https://github.com/openaudible/openaudible</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
-        <openaudible.version>1.0.0</openaudible.version>
+        <openaudible.version>1.4.9-bkw</openaudible.version>
 
         <main.class>org.openaudible.desktop.Application</main.class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -250,6 +250,11 @@
           <groupId>com.sun.xml.bind</groupId>
           <artifactId>jaxb-impl</artifactId>
           <version>2.3.0</version>
+        </dependency>
+        <dependency>
+             <groupId>javax.activation</groupId>
+             <artifactId>activation</artifactId>
+             <version>1.1.1</version>
         </dependency>
 
     </dependencies>
